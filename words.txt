@@ -1,0 +1,2 @@
+Apache Beam is a unified model for defining both batch and streaming data-parallel processing pipelines, as well as a set of language-specific SDKs for constructing pipelines and Runners for executing them on distributed processing backends, including Apache Apex, Apache Flink, Apache Spark, Google Cloud Dataflow and Hazelcast Jet.
+Beam provides a general approach to expressing embarrassingly parallel data processing pipelines and supports three categories of users, each of which have relatively disparate backgrounds and needs.
