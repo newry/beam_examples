@@ -1,0 +1,18 @@
+plugins {
+    id 'java'
+}
+
+group 'com.newry.data'
+version '1.0.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation('org.apache.beam:beam-sdks-java-core:2.16.0')
+
+    testImplementation('junit:junit:4.12')
+}
