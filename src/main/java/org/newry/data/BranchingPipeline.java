@@ -5,8 +5,10 @@ import org.apache.beam.sdk.Pipeline;
 import org.apache.beam.sdk.io.TextIO;
 import org.apache.beam.sdk.options.PipelineOptionsFactory;
 import org.apache.beam.sdk.transforms.DoFn;
+import org.apache.beam.sdk.transforms.Flatten;
 import org.apache.beam.sdk.transforms.ParDo;
 import org.apache.beam.sdk.values.PCollection;
+import org.apache.beam.sdk.values.PCollectionList;
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,7 +61,13 @@ public class BranchingPipeline {
                 }));
 
     aWords.apply("WriteAFile", TextIO.write().to("result_a.txt"));
-    bWords.apply("WriteAFile", TextIO.write().to("result_b.txt"));
+    bWords.apply("WriteBFile", TextIO.write().to("result_b.txt"));
+
+    // merge
+    PCollectionList.of(aWords)
+        .and(bWords)
+        .apply(Flatten.pCollections())
+        .apply("WriteABFile", TextIO.write().to("result_ab.txt"));
 
     pipeline.run().waitUntilFinish();
   }
